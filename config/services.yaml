@@ -1,0 +1,38 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Domain/*/Entity/'
+            - '../src/Domain/*/ValueObject/'
+            - '../src/Kernel.php'
+
+    # Domain services
+    App\Domain\:
+        resource: '../src/Domain/'
+        exclude:
+            - '../src/Domain/*/Entity/'
+            - '../src/Domain/*/ValueObject/'
+
+    # Application services
+    App\Application\:
+        resource: '../src/Application/'
+
+    # Infrastructure services
+    App\Infrastructure\:
+        resource: '../src/Infrastructure/'
+
+    # Interface controllers
+    App\Interfaces\:
+        resource: '../src/Interfaces/'
+        tags: ['controller.service_arguments']
+
+    # Shared components
+    App\Shared\:
+        resource: '../src/Shared/'
