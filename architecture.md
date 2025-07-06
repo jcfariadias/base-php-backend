@@ -6,7 +6,7 @@ This document provides a high-level architectural guide for building Symfony app
 
 ## 📐 Layered Architecture Overview
 
-```
+```yaml
 ┌────────────────────────────┐
 │        Interfaces          │  (Symfony Controllers, CLI, etc.)
 └────────────────────────────┘
@@ -28,7 +28,7 @@ This document provides a high-level architectural guide for building Symfony app
 
 ## 📁 Folder Structure
 
-```
+```yaml
 src/
 ├── Domain/
 │   └── <BoundedContext>/
@@ -120,6 +120,7 @@ src/
   - `.env`
 
 ### Example `docker-compose.yml`
+
 ```yaml
 version: '3.8'
 
@@ -180,4 +181,3 @@ Explore each class type and its ideal implementation in the linked documents:
 - [Application Service](application_service.md)
 - [Controller](controller.md)
 - [Repository Implementation](repository_impl.md)
-

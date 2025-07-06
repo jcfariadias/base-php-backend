@@ -11,28 +11,37 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Domain/*/Entity/'
             - '../src/Domain/*/ValueObject/'
+            - '../src/Application/*/DTO/'
             - '../src/Kernel.php'
 
-    # Domain services
+    # Domain services (exclude entities and value objects)
     App\Domain\:
         resource: '../src/Domain/'
         exclude:
             - '../src/Domain/*/Entity/'
             - '../src/Domain/*/ValueObject/'
 
-    # Application services
+    # Application services (exclude DTOs)
     App\Application\:
         resource: '../src/Application/'
+        exclude:
+            - '../src/Application/*/DTO/'
 
     # Infrastructure services
     App\Infrastructure\:
         resource: '../src/Infrastructure/'
 
     # Interface controllers
-    App\Interfaces\:
-        resource: '../src/Interfaces/'
+    App\Interfaces\Http\:
+        resource: '../src/Interfaces/Http/'
+        exclude:
+            - '../src/Interfaces/Http/*/Request/'
+            - '../src/Interfaces/Http/*/Response/'
         tags: ['controller.service_arguments']
 
-    # Shared components
-    App\Shared\:
-        resource: '../src/Shared/'
+    # Redis service configuration
+    Redis:
+        class: Redis
+        calls:
+            - connect: ['%env(REDIS_HOST:localhost)%', '%env(int:REDIS_PORT:6379)%']
+    

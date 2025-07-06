@@ -1,22 +1,30 @@
 framework:
     messenger:
-        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
-        # failure_transport: failed
+        # Enable failure transport for robust message handling
+        failure_transport: failed
 
         transports:
-            # https://symfony.com/doc/current/messenger.html#transport-configuration
-            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
-            # failed: 'doctrine://default?queue_name=failed'
-            # sync: 'sync://'
+            # Async transport using Redis for better performance
+            async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            
+            # Failed messages transport for retry mechanisms
+            failed: 'redis://redis:6379/failed_messages'
+            
+            # Sync transport for immediate processing
+            sync: 'sync://'
+            
+            # High priority transport for critical operations
+            high_priority: 'redis://redis:6379/high_priority'
 
         routing:
-            # Route your messages to the transports
-            # 'App\Message\YourMessage': async
+            # Default routing for other messages
+            '*': async
 
-# when@test:
-#    framework:
-#        messenger:
-#            transports:
-#                # replace with your transport name here (e.g., my_transport: 'in-memory://')
-#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
-#                async: 'in-memory://'
+when@test:
+    framework:
+        messenger:
+            transports:
+                # Use in-memory transport for testing
+                async: 'in-memory://'
+                failed: 'in-memory://'
+                high_priority: 'in-memory://'
