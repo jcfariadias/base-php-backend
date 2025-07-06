@@ -8,11 +8,13 @@ use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-final readonly class UserId
+final class UserId
 {
-    private function __construct(
-        private UuidInterface $value
-    ) {
+    private readonly UuidInterface $value;
+
+    private function __construct(UuidInterface $value)
+    {
+        $this->value = $value;
     }
 
     public static function generate(): self
@@ -22,15 +24,18 @@ final readonly class UserId
 
     public static function fromString(string $value): self
     {
-        if (empty($value)) {
+        // Trim whitespace to handle edge cases
+        $trimmedValue = trim($value);
+        
+        if (empty($trimmedValue)) {
             throw new InvalidArgumentException('User ID cannot be empty');
         }
 
-        if (!Uuid::isValid($value)) {
+        if (!Uuid::isValid($trimmedValue)) {
             throw new InvalidArgumentException('Invalid UUID format for User ID');
         }
 
-        return new self(Uuid::fromString($value));
+        return new self(Uuid::fromString($trimmedValue));
     }
 
     public function toString(): string
@@ -46,5 +51,17 @@ final readonly class UserId
     public function __toString(): string
     {
         return $this->toString();
+    }
+
+    // Prevent cloning to maintain immutability
+    public function __clone()
+    {
+        throw new \BadMethodCallException('UserId is immutable and cannot be cloned');
+    }
+
+    // Prevent unserialization to maintain immutability
+    public function __wakeup()
+    {
+        throw new \BadMethodCallException('UserId cannot be unserialized');
     }
 }

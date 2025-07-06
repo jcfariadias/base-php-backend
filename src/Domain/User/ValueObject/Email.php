@@ -6,11 +6,13 @@ namespace App\Domain\User\ValueObject;
 
 use InvalidArgumentException;
 
-final readonly class Email
+final class Email
 {
-    private function __construct(
-        private string $value
-    ) {
+    private readonly string $value;
+
+    private function __construct(string $value)
+    {
+        $this->value = $value;
     }
 
     public static function fromString(string $value): self
@@ -21,12 +23,12 @@ final readonly class Email
             throw new InvalidArgumentException('Email cannot be empty');
         }
 
-        if (!filter_var($trimmedValue, FILTER_VALIDATE_EMAIL)) {
-            throw new InvalidArgumentException('Invalid email format');
-        }
-
         if (strlen($trimmedValue) > 254) {
             throw new InvalidArgumentException('Email is too long (maximum 254 characters)');
+        }
+
+        if (!filter_var($trimmedValue, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidArgumentException('Invalid email format');
         }
 
         return new self(strtolower($trimmedValue));
@@ -44,16 +46,38 @@ final readonly class Email
 
     public function getDomain(): string
     {
-        return substr($this->value, strpos($this->value, '@') + 1);
+        $atPosition = strpos($this->value, '@');
+        if ($atPosition === false) {
+            throw new \LogicException('Invalid email format - no @ symbol found');
+        }
+        
+        return substr($this->value, $atPosition + 1);
     }
 
     public function getLocalPart(): string
     {
-        return substr($this->value, 0, strpos($this->value, '@'));
+        $atPosition = strpos($this->value, '@');
+        if ($atPosition === false) {
+            throw new \LogicException('Invalid email format - no @ symbol found');
+        }
+        
+        return substr($this->value, 0, $atPosition);
     }
 
     public function __toString(): string
     {
         return $this->toString();
+    }
+
+    // Prevent cloning to maintain immutability
+    public function __clone()
+    {
+        throw new \BadMethodCallException('Email is immutable and cannot be cloned');
+    }
+
+    // Prevent unserialization to maintain immutability
+    public function __wakeup()
+    {
+        throw new \BadMethodCallException('Email cannot be unserialized');
     }
 }

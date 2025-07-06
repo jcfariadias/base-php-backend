@@ -95,9 +95,4 @@ enum UserRole: string
     {
         return $this->getHierarchyLevel() >= $targetRole->getHierarchyLevel();
     }
-
-    public function __toString(): string
-    {
-        return $this->toString();
-    }
 }

@@ -79,9 +79,4 @@ enum UserStatus: string
     {
         return $this === self::ACTIVE;
     }
-
-    public function __toString(): string
-    {
-        return $this->toString();
-    }
 }

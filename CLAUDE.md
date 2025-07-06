@@ -61,3 +61,11 @@
 ## Implementation Notes
 
 - Use comprehensive-todo.md as a guide to implement the backend
+
+## Development Practices
+
+- Use test-driven development to complete tasks
+
+## Class Creation Guidelines
+
+- Follow gold standard rules for class creation
