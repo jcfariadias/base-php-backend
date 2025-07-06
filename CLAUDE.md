@@ -57,3 +57,7 @@
 ## Architectural Guidelines
 
 - Always refer to and strictly follow the guidelines in `architecture.md`
+
+## Implementation Notes
+
+- Use comprehensive-todo.md as a guide to implement the backend
