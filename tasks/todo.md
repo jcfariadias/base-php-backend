@@ -1,97 +1,130 @@
-# User Entity Implementation - DDD Style
+# User Registration, Onboarding, and Verification Workflows Implementation
 
-## Plan
+## Overview
+Implement complete user registration, onboarding, and verification workflows with email verification, multi-step onboarding, password reset, account management, and email notifications following DDD architecture principles.
 
-### Task 1: Create User Value Objects
-- [x] Create UserId value object in `src/Domain/User/ValueObject/UserId.php`
-- [x] Create Email value object in `src/Domain/User/ValueObject/Email.php`
-- [x] Create UserStatus value object in `src/Domain/User/ValueObject/UserStatus.php`
-- [x] Create UserRole value object in `src/Domain/User/ValueObject/UserRole.php`
+## Requirements Analysis
+- Email verification with expiring tokens
+- Multi-step onboarding process
+- Password complexity validation
+- Account status management
+- Email notifications
+- Profile completion tracking
+- Tenant invitation system
+- Clean DDD architecture
 
-### Task 2: Create User Entity
-- [x] Create User entity in `src/Domain/User/Entity/User.php`
-- [x] Include all required fields: id, email, password, roles, status, created_at, updated_at
-- [x] Add proper validation and domain logic
-- [x] Use Doctrine attributes for PostgreSQL compatibility
-- [x] Implement multi-tenant ready structure
+## Implementation Plan
 
-### Task 3: Create User Repository Interface
-- [x] Create UserRepositoryInterface in `src/Domain/User/Repository/UserRepositoryInterface.php`
-- [x] Define essential methods for user operations
+### Phase 1: Core Domain Models and Value Objects
+- [ ] **Task 1.1**: Create email verification token value objects
+- [ ] **Task 1.2**: Create onboarding step tracking value objects
+- [ ] **Task 1.3**: Create password reset token value objects
+- [ ] **Task 1.4**: Create notification template value objects
 
-### Task 4: Create User Domain Events
-- [x] Create UserCreated event in `src/Domain/User/Event/UserCreated.php`
-- [x] Create UserStatusChanged event in `src/Domain/User/Event/UserStatusChanged.php`
+### Phase 2: Domain Entities and Services
+- [ ] **Task 2.1**: Create EmailVerificationToken entity
+- [ ] **Task 2.2**: Create OnboardingProgress entity
+- [ ] **Task 2.3**: Create PasswordResetToken entity
+- [ ] **Task 2.4**: Create NotificationTemplate entity
+- [ ] **Task 2.5**: Create UserInvitation entity
+- [ ] **Task 2.6**: Create domain services for verification logic
+- [ ] **Task 2.7**: Create domain services for onboarding logic
 
-### Task 5: Create User Domain Service
-- [x] Create UserService in `src/Domain/User/Service/UserService.php`
-- [x] Implement password hashing and validation logic
+### Phase 3: Application Layer - Use Cases
+- [ ] **Task 3.1**: Create user registration use case
+- [ ] **Task 3.2**: Create email verification use case
+- [ ] **Task 3.3**: Create password reset request use case
+- [ ] **Task 3.4**: Create password reset confirm use case
+- [ ] **Task 3.5**: Create onboarding step completion use case
+- [ ] **Task 3.6**: Create profile completion tracking use case
+- [ ] **Task 3.7**: Create tenant invitation use case
+- [ ] **Task 3.8**: Create welcome email workflow use case
 
-## Implementation Notes
+### Phase 4: Application Layer - DTOs and Services
+- [ ] **Task 4.1**: Create registration command and response DTOs
+- [ ] **Task 4.2**: Create verification command and response DTOs
+- [ ] **Task 4.3**: Create password reset command and response DTOs
+- [ ] **Task 4.4**: Create onboarding command and response DTOs
+- [ ] **Task 4.5**: Create email notification service
+- [ ] **Task 4.6**: Create password validation service
 
-- Follow DDD principles with clean separation of concerns
-- Use Symfony 6.4 patterns and PostgreSQL compatibility
-- Implement proper entity validation and domain logic
-- Create multi-tenant ready structure
-- Use Doctrine attributes for ORM mapping
-- Follow the established architecture in `architecture.md`
+### Phase 5: Infrastructure Layer
+- [ ] **Task 5.1**: Create email verification repository implementation
+- [ ] **Task 5.2**: Create onboarding progress repository implementation
+- [ ] **Task 5.3**: Create password reset repository implementation
+- [ ] **Task 5.4**: Create notification template repository implementation
+- [ ] **Task 5.5**: Create user invitation repository implementation
+- [ ] **Task 5.6**: Create email service implementation
+- [ ] **Task 5.7**: Create token generation service implementation
 
-## Review Section
+### Phase 6: Database Migrations
+- [ ] **Task 6.1**: Create email verification tokens table migration
+- [ ] **Task 6.2**: Create onboarding progress table migration
+- [ ] **Task 6.3**: Create password reset tokens table migration
+- [ ] **Task 6.4**: Create notification templates table migration
+- [ ] **Task 6.5**: Create user invitations table migration
+- [ ] **Task 6.6**: Update users table for additional fields
 
-### Implementation Summary
+### Phase 7: Interface Layer - Controllers and Requests
+- [ ] **Task 7.1**: Create registration controller
+- [ ] **Task 7.2**: Create email verification controller
+- [ ] **Task 7.3**: Create password reset controller
+- [ ] **Task 7.4**: Create onboarding controller
+- [ ] **Task 7.5**: Create user profile controller
+- [ ] **Task 7.6**: Create tenant invitation controller
+- [ ] **Task 7.7**: Create request validation classes
+- [ ] **Task 7.8**: Create response formatting classes
 
-Successfully implemented a complete User entity system following DDD principles:
+### Phase 8: Routes and Configuration
+- [ ] **Task 8.1**: Define registration and verification routes
+- [ ] **Task 8.2**: Define password reset routes
+- [ ] **Task 8.3**: Define onboarding routes
+- [ ] **Task 8.4**: Define invitation routes
+- [ ] **Task 8.5**: Configure email templates
+- [ ] **Task 8.6**: Configure validation rules
+- [ ] **Task 8.7**: Configure security settings
 
-#### 1. Value Objects Created
-- **UserId**: UUID-based identifier with proper validation
-- **Email**: Email validation with domain/local part extraction
-- **UserStatus**: Enum-based status with business logic methods
-- **UserRole**: Hierarchical role system with permission checking
+### Phase 9: Testing
+- [ ] **Task 9.1**: Create unit tests for domain entities
+- [ ] **Task 9.2**: Create unit tests for value objects
+- [ ] **Task 9.3**: Create unit tests for use cases
+- [ ] **Task 9.4**: Create integration tests for controllers
+- [ ] **Task 9.5**: Create integration tests for repositories
+- [ ] **Task 9.6**: Create API tests for registration flow
+- [ ] **Task 9.7**: Create API tests for verification flow
+- [ ] **Task 9.8**: Create API tests for password reset flow
+- [ ] **Task 9.9**: Create API tests for onboarding flow
 
-#### 2. User Entity Features
-- **Multi-tenant support**: Optional tenant_id field for multi-tenancy
-- **Symfony Security integration**: Implements UserInterface and PasswordAuthenticatedUserInterface
-- **Rich domain logic**: Status transitions, role management, tenant operations
-- **Doctrine attributes**: Full ORM mapping with PostgreSQL optimization
-- **Validation**: Comprehensive validation at domain level
-- **Immutable timestamps**: Created/updated tracking
+### Phase 10: Documentation and Final Review
+- [ ] **Task 10.1**: Update API documentation
+- [ ] **Task 10.2**: Create user flow documentation
+- [ ] **Task 10.3**: Create deployment guide
+- [ ] **Task 10.4**: Final integration testing
+- [ ] **Task 10.5**: Performance testing
+- [ ] **Task 10.6**: Security review
 
-#### 3. Repository Interface
-- **Complete CRUD operations**: Save, remove, find operations
-- **Multi-tenant queries**: Tenant-specific user retrieval
-- **Status-based queries**: Find users by status
-- **Search capabilities**: Email pattern matching, date range queries
-- **Pagination support**: Limit/offset for all queries
+## Architecture Principles
+- Follow DDD layered architecture
+- Use clean architecture principles
+- Implement TDD for all components
+- Ensure minimal changes to existing code
+- Maintain separation of concerns
+- Use domain events for cross-boundary communication
 
-#### 4. Domain Events
-- **UserCreated**: Triggered on user creation
-- **UserStatusChanged**: Triggered on status transitions
-- **Rich event data**: Full context for event handlers
+## Technical Specifications
+- PHP 8.4 with Symfony 6.4 LTS
+- PostgreSQL database
+- JWT authentication
+- Email service integration
+- Token-based verification
+- Multi-step onboarding tracking
+- Password complexity validation
+- Account status management
 
-#### 5. Domain Service
-- **User lifecycle management**: Create, activate, deactivate, suspend, delete
-- **Password management**: Validation, hashing, verification
-- **Role management**: Add/remove roles with validation
-- **Tenant operations**: Assign/remove from tenants
-- **Authorization checks**: Permission-based access control
-
-#### Technical Features
-- **Clean Architecture**: Proper separation of concerns
-- **Type Safety**: Extensive use of PHP 8.4 features
-- **PostgreSQL Optimized**: Proper indexing and constraints
-- **Multi-tenant Ready**: Tenant isolation and access control
-- **Security Focused**: Password complexity, role hierarchy
-- **Extensible**: Easy to extend with new features
-
-#### Files Created
-- `/home/joao_dias/warehouse.space/src/Domain/User/ValueObject/UserId.php`
-- `/home/joao_dias/warehouse.space/src/Domain/User/ValueObject/Email.php`
-- `/home/joao_dias/warehouse.space/src/Domain/User/ValueObject/UserStatus.php`
-- `/home/joao_dias/warehouse.space/src/Domain/User/ValueObject/UserRole.php`
-- `/home/joao_dias/warehouse.space/src/Domain/User/Entity/User.php`
-- `/home/joao_dias/warehouse.space/src/Domain/User/Repository/UserRepositoryInterface.php`
-- `/home/joao_dias/warehouse.space/src/Domain/User/Event/UserCreated.php`
-- `/home/joao_dias/warehouse.space/src/Domain/User/Event/UserStatusChanged.php`
-- `/home/joao_dias/warehouse.space/src/Domain/User/Service/UserService.php`
-
-All tasks completed successfully with full DDD compliance and Symfony 6.4 integration.
+## Notes
+- Each task should be implemented following TDD principles
+- All changes should be committed after each completed task
+- Code should be simple and maintainable
+- Follow existing naming conventions and patterns
+- Implement comprehensive error handling
+- Ensure proper logging and monitoring

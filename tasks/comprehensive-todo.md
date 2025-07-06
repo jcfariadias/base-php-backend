@@ -24,7 +24,7 @@ SME-focused fulfillment platform (Flow.space alternative) with Symfony 6.4 LTS, 
 ## Phase 2: Authentication System
 
 ### User Authentication & Authorization
-- [ ] **auth-system-1**: Create User entity and authentication system with OAuth 2.0 + JWT
+- [x] ✓ **auth-system-1**: Create User entity and authentication system with OAuth 2.0 + JWT
 - [ ] **auth-system-2**: Implement Role-based Access Control (RBAC) with multi-tenant architecture
 - [ ] **auth-system-3**: Build user registration, onboarding, and verification workflows
 
