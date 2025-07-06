@@ -8,13 +8,13 @@ use App\Domain\User\ValueObject\UserId;
 use App\Domain\User\ValueObject\UserStatus;
 use DateTimeImmutable;
 
-final readonly class UserStatusChanged
+final class UserStatusChanged
 {
     public function __construct(
-        private UserId $userId,
-        private UserStatus $previousStatus,
-        private UserStatus $newStatus,
-        private DateTimeImmutable $occurredAt
+        private readonly UserId $userId,
+        private readonly UserStatus $previousStatus,
+        private readonly UserStatus $newStatus,
+        private readonly DateTimeImmutable $occurredAt
     ) {
     }
 

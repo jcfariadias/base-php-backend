@@ -39,6 +39,10 @@ services:
             - '../src/Interfaces/Http/*/Response/'
         tags: ['controller.service_arguments']
 
+    # Repository interface bindings
+    App\Domain\User\Repository\UserRepositoryInterface:
+        alias: App\Infrastructure\User\Repository\UserRepository
+
     # Redis service configuration
     Redis:
         class: Redis

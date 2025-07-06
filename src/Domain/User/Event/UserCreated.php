@@ -9,15 +9,15 @@ use App\Domain\User\ValueObject\UserId;
 use App\Domain\User\ValueObject\UserStatus;
 use DateTimeImmutable;
 
-final readonly class UserCreated
+final class UserCreated
 {
     public function __construct(
-        private UserId $userId,
-        private Email $email,
-        private UserStatus $status,
-        private array $roles,
-        private ?string $tenantId,
-        private DateTimeImmutable $occurredAt
+        private readonly UserId $userId,
+        private readonly Email $email,
+        private readonly UserStatus $status,
+        private readonly array $roles,
+        private readonly ?string $tenantId,
+        private readonly DateTimeImmutable $occurredAt
     ) {
     }
 
