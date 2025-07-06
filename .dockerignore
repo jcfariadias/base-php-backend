@@ -10,6 +10,7 @@ docker-compose.yml
 # Documentation
 README.md
 *.md
+tasks/
 
 # Environment files
 .env.local
@@ -19,9 +20,12 @@ README.md
 /var/log
 *.log
 
-# Cache
+# Cache and dependencies (will be installed in container)
 /var/cache
+/var/log
 /vendor
+
+# Node.js
 /node_modules
 
 # IDE
@@ -37,3 +41,7 @@ Thumbs.db
 # Temporary files
 /tmp
 *.tmp
+
+# Symfony specific
+/var/
+/public/bundles/

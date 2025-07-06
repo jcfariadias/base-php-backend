@@ -14,9 +14,10 @@ This project implements a layered architecture with clear separation of concerns
 
 ## Tech Stack
 
-- **PHP**: 8.4
+- **PHP**: 8.4 FPM
+- **Web Server**: Nginx (Alpine)
 - **Framework**: Symfony 6.4 LTS
-- **Database**: PostgreSQL 16
+- **Database**: PostgreSQL 17 (Latest)
 - **ORM**: Doctrine ORM
 - **Containerization**: Docker & Docker Compose
 

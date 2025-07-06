@@ -11,23 +11,31 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libpq-dev \
     libzip-dev \
-    && docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd zip
+    && docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd zip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
-WORKDIR /app
+WORKDIR /var/www/html
 
-# Copy application code
+# Copy application code first
 COPY . .
 
+# Install PHP dependencies without running scripts
+RUN composer install --optimize-autoloader --no-scripts
+
+# Run Symfony scripts manually
+RUN php bin/console cache:clear --env=prod --no-debug || true
+
 # Set permissions
-RUN chown -R www-data:www-data /app \
-    && chmod -R 755 /app
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
 
-# Expose port
-EXPOSE 8000
+# Expose PHP-FPM port
+EXPOSE 9000
 
-# Start PHP development server
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+# Start PHP-FPM
+CMD ["php-fpm"]
