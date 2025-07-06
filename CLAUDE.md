@@ -69,3 +69,7 @@
 ## Class Creation Guidelines
 
 - Follow gold standard rules for class creation
+
+## Container and Environment Guidelines
+
+- Always run commands (bin/console, phpunit, etc) from inside the containers. Never run commands on local machine

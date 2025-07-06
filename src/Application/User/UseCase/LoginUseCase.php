@@ -12,7 +12,7 @@ use App\Domain\User\Repository\UserRepositoryInterface;
 use App\Domain\User\ValueObject\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-final class LoginUseCase
+class LoginUseCase
 {
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,

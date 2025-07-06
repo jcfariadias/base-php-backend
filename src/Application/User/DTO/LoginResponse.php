@@ -6,7 +6,7 @@ namespace App\Application\User\DTO;
 
 use App\Domain\User\Entity\User;
 
-final class LoginResponse
+class LoginResponse
 {
     public function __construct(
         private readonly string $accessToken,
