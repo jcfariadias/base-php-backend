@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="6.12.1@e71404b0465be25cf7f8a631b298c01c5ddd864f">
+  <file src="src/Domain/User/Entity/User.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function eraseCredentials(): void]]></code>
+      <code><![CDATA[public function getPassword(): string]]></code>
+      <code><![CDATA[public function getRoles(): array]]></code>
+      <code><![CDATA[public function getUserIdentifier(): string]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedMethod>
+      <code><![CDATA[UserStatus::active()]]></code>
+    </UndefinedMethod>
+  </file>
+  <file src="src/Domain/User/Service/UserService.php">
+    <UndefinedMethod>
+      <code><![CDATA[User::create(
+            $userId,
+            $email,
+            $hashedPassword,
+            $roles,
+            $status,
+            $tenantId
+        )]]></code>
+      <code><![CDATA[activate]]></code>
+      <code><![CDATA[addRole]]></code>
+      <code><![CDATA[assignToTenant]]></code>
+      <code><![CDATA[belongsToTenant]]></code>
+      <code><![CDATA[belongsToTenant]]></code>
+      <code><![CDATA[belongsToTenant]]></code>
+      <code><![CDATA[changeEmail]]></code>
+      <code><![CDATA[changePassword]]></code>
+      <code><![CDATA[changeStatus]]></code>
+      <code><![CDATA[deactivate]]></code>
+      <code><![CDATA[getUserRoles]]></code>
+      <code><![CDATA[hasManagerPrivileges]]></code>
+      <code><![CDATA[hasRole]]></code>
+      <code><![CDATA[hasRole]]></code>
+      <code><![CDATA[hasRole]]></code>
+      <code><![CDATA[hasRole]]></code>
+      <code><![CDATA[markAsDeleted]]></code>
+      <code><![CDATA[removeFromTenant]]></code>
+      <code><![CDATA[removeRole]]></code>
+      <code><![CDATA[suspend]]></code>
+    </UndefinedMethod>
+  </file>
+  <file src="src/Interfaces/Http/User/Controller/GetCurrentUserController.php">
+    <UndefinedMethod>
+      <code><![CDATA[getFirstName]]></code>
+      <code><![CDATA[getLastName]]></code>
+    </UndefinedMethod>
+  </file>
+  <file src="src/Interfaces/Http/User/Controller/RefreshTokenController.php">
+    <InvalidArgument>
+      <code><![CDATA[$response]]></code>
+    </InvalidArgument>
+  </file>
+  <file src="src/Interfaces/Http/User/Controller/RegisterController.php">
+    <InvalidArgument>
+      <code><![CDATA[$response]]></code>
+    </InvalidArgument>
+  </file>
+  <file src="tests/Unit/Domain/User/ValueObject/EmailTest.php">
+    <NullArgument>
+      <code><![CDATA[null]]></code>
+    </NullArgument>
+  </file>
+  <file src="tests/Unit/Domain/User/ValueObject/UserIdTest.php">
+    <NullArgument>
+      <code><![CDATA[null]]></code>
+    </NullArgument>
+  </file>
+  <file src="tests/Unit/Domain/User/ValueObject/ValueObjectTestCase.php">
+    <InvalidCast>
+      <code><![CDATA[$first]]></code>
+      <code><![CDATA[$second]]></code>
+    </InvalidCast>
+  </file>
+  <file src="tests/Unit/Interfaces/Http/User/Controller/LoginControllerTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedMethod>
+  </file>
+</files>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="6"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="false"
+    cacheDirectory="var/psalm"
+    useDocblockTypes="true"
+    useDocblockPropertyTypes="true"
+    strictBinaryOperands="true"
+    errorBaseline="psalm-baseline.xml"
+>
+    <projectFiles>
+        <directory name="src" />
+        <directory name="tests" />
+        <ignoreFiles>
+            <directory name="vendor" />
+            <directory name="var" />
+            <directory name="public" />
+            <file name="src/Kernel.php" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <LessSpecificReturnType errorLevel="info" />
+        <MoreSpecificReturnType errorLevel="info" />
+        <MissingClosureReturnType errorLevel="info" />
+        <MissingReturnType errorLevel="info" />
+        <MissingPropertyType errorLevel="info" />
+        <InvalidDocblock errorLevel="info" />
+        <MissingConstructor errorLevel="info" />
+        <MissingClosureParamType errorLevel="info" />
+        <MissingParamType errorLevel="info" />
+        <UnusedVariable errorLevel="info" />
+        <PossiblyUnusedMethod errorLevel="info" />
+        <PossiblyUnusedProperty errorLevel="info" />
+    </issueHandlers>
+</psalm>

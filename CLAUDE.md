@@ -11,11 +11,6 @@
 7. Make each task and code change as simple as possible. We want to avoid massive or complex changes. Each change should impact the code as minimally as possible. It all comes down to simplicity.
 8. Finally, add a review section to the todo.md file with a summary of the changes made and any other relevant information.
 
-## Development Guidelines
-
-- Every task should be done in a TDD way
-- Don't over engineer. KISS
-
 ### Feature Implementation Priority Rules
 
 - IMMEDIATE EXECUTION: Launch parallel Tasks immediately upon feature requests
@@ -51,10 +46,15 @@
 
 ## Development Workflow
 
-- Always start any feature or task with the respective tests, if applicable (TDD)
+- **IMPORTANT**: Always start any feature or task with the respective tests, if applicable (TDD)
+- **IMPORTANT**: Use SOLID principles
+- **IMPORTANT**: Don't over engineer - KISS
 - Run the tests to see if they fail
 - Implement the feature until tests pass
 - Every time a task is completed commit and push to repo
+- All classes that are not extended should be final
+- Use PHP_CodeSniffer to validate and fix classes against PHP Standards (PSR/PER) before every commit for all supported files
+- Run PSALM before each commit to perform static code analysis
 
 ## Architectural Guidelines
 
