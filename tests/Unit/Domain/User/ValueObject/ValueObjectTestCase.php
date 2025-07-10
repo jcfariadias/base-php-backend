@@ -23,7 +23,7 @@ abstract class ValueObjectTestCase extends TestCase
             $methodName = $method->getName();
             
             // Check no setter methods exist
-            $this->assertStringNotStartsWith('set', $methodName, 
+            $this->assertFalse(str_starts_with($methodName, 'set'), 
                 "Value object {$className} should not have setter methods, found: {$methodName}");
         }
     }

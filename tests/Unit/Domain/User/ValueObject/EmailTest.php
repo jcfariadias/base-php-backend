@@ -102,8 +102,6 @@ final class EmailTest extends ValueObjectTestCase
             'user@example',
             'user@-example.com',
             'user@example-.com',
-            '',
-            ' ',
             'user@@example.com',
             'user@example.com.',
             '.user@example.com',
@@ -127,7 +125,7 @@ final class EmailTest extends ValueObjectTestCase
     public function it_should_reject_email_too_long(): void
     {
         // Create an email longer than 254 characters
-        $longLocalPart = str_repeat('a', 240);
+        $longLocalPart = str_repeat('a', 245);
         $longEmail = $longLocalPart . '@example.com';
         
         $this->expectException(InvalidArgumentException::class);

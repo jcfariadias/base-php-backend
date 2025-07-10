@@ -16,8 +16,6 @@
 - Every task should be done in a TDD way
 - Don't over engineer. KISS
 
-## Feature Implementation System Guidelines
-
 ### Feature Implementation Priority Rules
 
 - IMMEDIATE EXECUTION: Launch parallel Tasks immediately upon feature requests
@@ -47,24 +45,20 @@
 
 - **CRITICAL**: Make MINIMAL CHANGES to existing patterns and structures
 - **CRITICAL**: Preserve existing naming conventions and file organization
-- Follow project's established architecture provided in `architecture.md` and component patterns
+- **CRITICAL**: Use gold standard template for guidance. They are prsent in `./architecture/Implementation/*` folder
+- Follow project's established architecture provided in `./architecture/architecture.md` and component patterns
 - Use existing utility functions and avoid duplicating functionality
 
 ## Development Workflow
 
+- Always start any feature or task with the respective tests, if applicable (TDD)
+- Run the tests to see if they fail
+- Implement the feature until tests pass
 - Every time a task is completed commit and push to repo
 
 ## Architectural Guidelines
 
-- Always refer to and strictly follow the guidelines in `architecture.md`
-
-## Implementation Notes
-
-- Use comprehensive-todo.md as a guide to implement the backend
-
-## Development Practices
-
-- Use test-driven development to complete tasks
+- Always refer to and strictly follow the guidelines in `./architecture/architecture.md`
 
 ## Class Creation Guidelines
 
