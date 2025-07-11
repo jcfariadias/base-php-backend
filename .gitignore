@@ -1,5 +1,6 @@
 
 ###> symfony/framework-bundle ###
+/.env
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -16,4 +17,32 @@
 ###> phpunit/phpunit ###
 /phpunit.xml
 /.phpunit.cache/
+/.phpunit.result.cache
 ###< phpunit/phpunit ###
+
+# IDE and Editor files
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Cache and temporary files
+/.cache/
+/tmp/
+/temp/
+
+# Serena cache
+/.serena/cache/
