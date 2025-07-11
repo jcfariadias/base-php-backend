@@ -1,0 +1,11 @@
+doctrine:
+    dbal:
+        # configure these for your database server
+        driver: 'pdo_sqlite'
+        url: 'sqlite:///%kernel.project_dir%/var/test.db'
+        charset: utf8mb4
+        
+    orm:
+        auto_generate_proxy_classes: false
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true

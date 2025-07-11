@@ -11,6 +11,8 @@ final class UserResponse
     public function __construct(
         private readonly string $id,
         private readonly string $email,
+        private readonly string $firstName,
+        private readonly string $lastName,
         private readonly array $roles,
         private readonly string $status,
         private readonly ?string $tenantId,
@@ -24,6 +26,8 @@ final class UserResponse
         return new self(
             $user->getId()->toString(),
             $user->getEmail()->toString(),
+            $user->getFirstName(),
+            $user->getLastName(),
             $user->getRoles(),
             $user->getStatus()->toString(),
             $user->getTenantId(),
@@ -40,6 +44,16 @@ final class UserResponse
     public function getEmail(): string
     {
         return $this->email;
+    }
+    
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+    
+    public function getLastName(): string
+    {
+        return $this->lastName;
     }
 
     public function getRoles(): array
@@ -72,6 +86,8 @@ final class UserResponse
         return [
             'id' => $this->id,
             'email' => $this->email,
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
             'roles' => $this->roles,
             'status' => $this->status,
             'tenant_id' => $this->tenantId,

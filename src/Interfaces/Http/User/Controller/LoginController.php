@@ -24,12 +24,17 @@ class LoginController extends AbstractController
     #[Route('/api/auth/login', name: 'user_login', methods: ['POST'])]
     public function __invoke(Request $request): JsonResponse
     {
-        /** @var LoginCommand $command */
-        $command = $this->serializer->deserialize(
-            $request->getContent(),
-            LoginCommand::class,
-            'json'
-        );
+        $data = json_decode($request->getContent(), true);
+        
+        if (!$data || !isset($data['email']) || !isset($data['password'])) {
+            return new JsonResponse(['errors' => ['email: Email is required', 'password: Password is required']], 400);
+        }
+
+        try {
+            $command = new LoginCommand($data['email'], $data['password']);
+        } catch (\Exception $e) {
+            return new JsonResponse(['errors' => ['Invalid request format']], 400);
+        }
 
         $errors = $this->validator->validate($command);
         if (count($errors) > 0) {
@@ -50,6 +55,8 @@ class LoginController extends AbstractController
             'user' => [
                 'id' => $response->getUser()->getId()->toString(),
                 'email' => $response->getUser()->getEmail()->toString(),
+                'first_name' => $response->getUser()->getFirstName(),
+                'last_name' => $response->getUser()->getLastName(),
                 'roles' => $response->getUser()->getRoles(),
                 'status' => $response->getUser()->getStatus()->toString(),
             ]

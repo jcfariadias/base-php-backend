@@ -25,11 +25,24 @@ class RegisterController extends AbstractController
     #[Route('/api/auth/register', name: 'user_register', methods: ['POST'])]
     public function __invoke(Request $request): JsonResponse
     {
+        $data = json_decode($request->getContent(), true);
+        
+        if (!$data || !isset($data['email']) || !isset($data['password']) || !isset($data['firstName']) || !isset($data['lastName'])) {
+            return new JsonResponse(['errors' => [
+                'email: Email is required',
+                'password: Password is required',
+                'firstName: First name is required',
+                'lastName: Last name is required'
+            ]], 400);
+        }
+
         try {
-            $command = $this->serializer->deserialize(
-                $request->getContent(),
-                RegisterCommand::class,
-                'json'
+            $command = new RegisterCommand(
+                $data['email'],
+                $data['password'],
+                $data['firstName'],
+                $data['lastName'],
+                $data['tenantId'] ?? null
             );
 
             $errors = $this->validator->validate($command);
@@ -44,7 +57,7 @@ class RegisterController extends AbstractController
             $response = $this->registerUseCase->execute($command);
 
             return new JsonResponse(
-                AuthResponse::fromLoginResponse($response),
+                AuthResponse::fromRegisterResponse($response),
                 201
             );
         } catch (\Exception $e) {

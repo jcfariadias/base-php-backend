@@ -49,7 +49,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "App\\Tests\\": "tests/"
         }
     },
     "replace": {
@@ -71,6 +71,41 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "test": [
+            "vendor/bin/phpunit"
+        ],
+        "test:unit": [
+            "vendor/bin/phpunit tests/Unit"
+        ],
+        "test:integration": [
+            "vendor/bin/phpunit tests/Integration"
+        ],
+        "test:functional": [
+            "vendor/bin/phpunit tests/Functional"
+        ],
+        "test:controllers": [
+            "vendor/bin/phpunit tests/Unit/Interfaces/Http/User/Controller"
+        ],
+        "test:coverage": [
+            "vendor/bin/phpunit --coverage-html coverage"
+        ],
+        "test:watch": [
+            "vendor/bin/phpunit --watch"
+        ],
+        "cs:check": [
+            "vendor/bin/phpcs --standard=PSR12 src tests"
+        ],
+        "cs:fix": [
+            "vendor/bin/phpcbf --standard=PSR12 src tests"
+        ],
+        "psalm": [
+            "vendor/bin/psalm"
+        ],
+        "qa": [
+            "@cs:check",
+            "@psalm",
+            "@test"
         ]
     },
     "conflict": {

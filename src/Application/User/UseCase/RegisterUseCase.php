@@ -13,7 +13,7 @@ use App\Domain\User\ValueObject\Email;
 use App\Domain\User\ValueObject\UserId;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-final class RegisterUseCase
+class RegisterUseCase
 {
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
@@ -37,6 +37,8 @@ final class RegisterUseCase
         $user = new User(
             $userId,
             $email,
+            $command->getFirstName(),
+            $command->getLastName(),
             '', // Will be set below
             ['ROLE_USER'],
             $command->getTenantId()

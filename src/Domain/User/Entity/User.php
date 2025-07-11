@@ -23,6 +23,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, unique: true)]
     private string $email;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private string $firstName;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    private string $lastName;
+
     #[ORM\Column(type: 'string')]
     private string $password;
 
@@ -44,15 +50,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct(
         UserId $id,
         Email $email,
+        string $firstName,
+        string $lastName,
         string $password,
         array $roles = ['ROLE_USER'],
         ?string $tenantId = null
     ) {
         $this->id = $id->toString();
         $this->email = $email->toString();
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
         $this->password = $password;
         $this->roles = $roles;
-        $this->status = UserStatus::active()->toString();
+        $this->status = UserStatus::ACTIVE->value;
         $this->tenantId = $tenantId;
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = new DateTimeImmutable();
@@ -66,6 +76,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getEmail(): Email
     {
         return Email::fromString($this->email);
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
     }
 
     public function getPassword(): string

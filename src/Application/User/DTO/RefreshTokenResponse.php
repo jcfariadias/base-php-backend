@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\User\DTO;
 
-final class RefreshTokenResponse
+class RefreshTokenResponse
 {
     public function __construct(
         private readonly string $accessToken,

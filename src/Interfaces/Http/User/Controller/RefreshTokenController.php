@@ -25,12 +25,14 @@ class RefreshTokenController extends AbstractController
     #[Route('/api/auth/refresh', name: 'user_refresh_token', methods: ['POST'])]
     public function __invoke(Request $request): JsonResponse
     {
+        $data = json_decode($request->getContent(), true);
+        
+        if (!$data || !isset($data['refreshToken']) || empty($data['refreshToken'])) {
+            return new JsonResponse(['errors' => ['refreshToken: Refresh token is required']], 400);
+        }
+
         try {
-            $command = $this->serializer->deserialize(
-                $request->getContent(),
-                RefreshTokenCommand::class,
-                'json'
-            );
+            $command = new RefreshTokenCommand($data['refreshToken']);
 
             $errors = $this->validator->validate($command);
             if (count($errors) > 0) {
@@ -44,7 +46,7 @@ class RefreshTokenController extends AbstractController
             $response = $this->refreshTokenUseCase->execute($command);
 
             return new JsonResponse(
-                AuthResponse::fromLoginResponse($response),
+                AuthResponse::fromRefreshResponse($response),
                 200
             );
         } catch (\Exception $e) {

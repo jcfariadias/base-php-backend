@@ -49,3 +49,8 @@ services:
         calls:
             - connect: ['%env(REDIS_HOST:localhost)%', '%env(int:REDIS_PORT:6379)%']
     
+    # JWT Event Listeners
+    App\Infrastructure\User\EventListener\JWTCreatedListener:
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+    

@@ -26,7 +26,7 @@ final class AuthResponse
             'refresh_token' => $response->getRefreshToken(),
             'token_type' => 'Bearer',
             'expires_in' => $response->getExpiresIn(),
-            'user' => $response->getUser() ? UserResponse::fromUser($response->getUser()) : null
+            'user' => $response->getUser() ? UserResponse::fromUser($response->getUser())->toArray() : null
         ];
     }
 
@@ -47,7 +47,7 @@ final class AuthResponse
             'refresh_token' => $response->getRefreshToken(),
             'token_type' => 'Bearer',
             'expires_in' => $response->getExpiresIn(),
-            'user' => UserResponse::fromUser($response->getUser()),
+            'user' => UserResponse::fromUser($response->getUser())->toArray(),
             'message' => 'User registered successfully'
         ];
     }

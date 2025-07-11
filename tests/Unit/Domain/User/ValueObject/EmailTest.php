@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Domain\User\ValueObject;
+namespace App\Tests\Unit\Domain\User\ValueObject;
 
 use App\Domain\User\ValueObject\Email;
 use InvalidArgumentException;

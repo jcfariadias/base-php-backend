@@ -8,7 +8,7 @@ use App\Application\User\DTO\RefreshTokenCommand;
 use App\Application\User\DTO\RefreshTokenResponse;
 use App\Application\User\Service\AuthenticationService;
 
-final class RefreshTokenUseCase
+class RefreshTokenUseCase
 {
     public function __construct(
         private readonly AuthenticationService $authenticationService
